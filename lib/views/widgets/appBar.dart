@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_getx/style/appColors.dart';
 
-AppBar appBar() {
+AppBar appBar(GlobalKey<ScaffoldState> key) {
   return AppBar(
     elevation: 0,
     backgroundColor: AppColors.bg,
@@ -12,7 +12,9 @@ AppBar appBar() {
           Icons.menu,
           color: AppColors.iconColor,
         ),
-        onTap: () {},
+        onTap: () {
+          key.currentState.openDrawer();
+        },
       ),
     ),
     actions: [
