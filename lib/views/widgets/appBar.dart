@@ -29,17 +29,6 @@ AppBar appBar(GlobalKey<ScaffoldState> key) {
           onTap: () {},
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.only(right: 18.0),
-        child: InkWell(
-          child: Icon(
-            Icons.notifications_none,
-            color: AppColors.iconColor,
-            size: 26.0,
-          ),
-          onTap: () {},
-        ),
-      ),
     ],
   );
 }

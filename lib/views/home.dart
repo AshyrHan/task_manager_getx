@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_getx/style/appColors.dart';
 import 'package:task_manager_getx/style/style.dart';
 import 'package:task_manager_getx/views/drawer.dart';
 import 'package:task_manager_getx/views/widgets/appBar.dart';
 import 'package:task_manager_getx/views/widgets/categoryCard.dart';
 import 'package:task_manager_getx/views/widgets/header.dart';
+import 'package:task_manager_getx/views/widgets/newTask.dart';
 import 'package:task_manager_getx/views/widgets/taks.dart';
 
 class Home extends StatelessWidget {
@@ -50,7 +52,9 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.accentColor,
         elevation: 5.0,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(CreatTask());
+        },
         child: Icon(
           Icons.add,
           size: 24.0,

@@ -19,6 +19,14 @@ class Style {
     );
   }
 
+  static h3plus() {
+    return TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.w400,
+      color: AppColors.primaryTextColor,
+    );
+  }
+
   static h3() {
     return TextStyle(
       fontSize: 16.0,
@@ -40,6 +48,21 @@ class Style {
       fontSize: 19.0,
       fontWeight: FontWeight.w400,
       color: AppColors.primaryTextColor,
+    );
+  }
+
+  static boxDecoration() {
+    return BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(14.0),
+      boxShadow: [
+        BoxShadow(
+          blurRadius: 10.0,
+          color: Colors.grey.withOpacity(0.08),
+          offset: Offset(0, 1),
+          spreadRadius: 1,
+        )
+      ],
     );
   }
 }

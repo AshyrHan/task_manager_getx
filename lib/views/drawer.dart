@@ -59,6 +59,44 @@ Widget menu(BuildContext context) {
                   ),
                 ],
               )),
+          Container(
+            padding: EdgeInsets.only(left: 5.0),
+            alignment: Alignment.centerLeft,
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Icon(
+                    Icons.folder_open,
+                    color: AppColors.iconColor,
+                  ),
+                  title: Text(
+                    'Categories',
+                    style: Style.h3(),
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.data_usage,
+                    color: AppColors.iconColor,
+                  ),
+                  title: Text(
+                    'Analitics',
+                    style: Style.h3(),
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.brightness_6,
+                    color: AppColors.iconColor,
+                  ),
+                  title: Text(
+                    'Night mode',
+                    style: Style.h3(),
+                  ),
+                ),
+              ],
+            ),
+          )
         ]),
       ),
     ),
