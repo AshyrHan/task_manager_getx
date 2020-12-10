@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_getx/style/appColors.dart';
 
 AppBar appBar(GlobalKey<ScaffoldState> key) {
@@ -26,7 +27,9 @@ AppBar appBar(GlobalKey<ScaffoldState> key) {
             color: AppColors.iconColor,
             size: 26.0,
           ),
-          onTap: () {},
+          onTap: () {
+            Get.snackbar('Snackbar', 'Message');
+          },
         ),
       ),
     ],

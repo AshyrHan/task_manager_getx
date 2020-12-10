@@ -26,7 +26,7 @@ class CreatTask extends StatelessWidget {
         elevation: 0,
         backgroundColor: AppColors.bg,
         title: Text(
-          'Create task',
+          (this.index != null) ? 'Edit task' : 'Create task',
           style: Style.h2(),
         ),
         centerTitle: true,
@@ -60,7 +60,7 @@ class CreatTask extends StatelessWidget {
                   SizedBox(
                     height: 20.0,
                   ),
-                  additinalPicker(context, index),
+                  additinalPicker(context, this.index),
                 ],
               ),
               Container(
@@ -85,18 +85,34 @@ class CreatTask extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          if (this.index == null) {
-            controller.addTask(
-              taskNameController?.text,
-              taskDescripController.text,
-            );
+          if (taskNameController.text != '') {
+            if (this.index == null) {
+              controller.addTask(
+                taskNameController?.text,
+                taskDescripController.text,
+              );
+            } else {
+              controller.editTask(
+                  taskNameController.text, taskDescripController?.text, index);
+              // controller.todos[index].name = taskNameController.text;
+              // controller.todos[index].descrip = taskDescripController?.text;
+              // controller.todos[index].color = controller.color.value;
+              // controller.todos[index].dateTime = controller.time?.value;
+            }
           } else {
-            controller.editTask(
-                taskNameController.text, taskDescripController?.text, index);
-            // controller.todos[index].name = taskNameController.text;
-            // controller.todos[index].descrip = taskDescripController?.text;
-            // controller.todos[index].color = controller.color.value;
-            // controller.todos[index].dateTime = controller.time?.value;
+            return Get.snackbar(
+              'Error',
+              'Enter a name of task',
+              boxShadows: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10.0,
+                  offset: Offset(1, 1),
+                  spreadRadius: 10,
+                )
+              ],
+              backgroundColor: Colors.white,
+            );
           }
 
           Get.back();

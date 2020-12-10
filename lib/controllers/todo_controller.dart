@@ -18,15 +18,15 @@ class TodoController extends GetxController {
     print(todos.last.descrip);
     color.value = AppColors.taskColor;
     _category.value = 'Personal';
-    time.value = '';
+    time.value = 'Set data';
   }
 
   void editTask(String text, String descrip, int index) {
     todos[index].name = text;
     todos[index].descrip = descrip;
-    todos[index].color = color.value;
+
     print('task edited');
-    color.value = AppColors.taskColor;
+    //color.value = AppColors.taskColor;
   }
 
   //utils
@@ -38,7 +38,7 @@ class TodoController extends GetxController {
 
   void changeCategory(String category) => _category.value = category;
 
-  var time = ''.obs;
+  var time = 'Set data'.obs;
 
   void changeDateTime(String newTime) => time.value = newTime;
 }

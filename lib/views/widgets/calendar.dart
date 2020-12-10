@@ -11,13 +11,13 @@ import 'package:task_manager_getx/style/style.dart';
 
 Widget additinalPicker(context, int index) {
   final TodoController controller = Get.find();
-  DateTime now = DateTime.now();
-  String formattedDate = DateFormat('d MMM y').format(now);
+  // DateTime now = DateTime.now();
+  // String formattedDate = DateFormat('d MMM y').format(now);
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       GestureDetector(
-        onTap: () => showColors(context),
+        onTap: () => showColors(context, index),
         child: Container(
           width: MediaQuery.of(context).size.width * 0.3,
           height: 45.0,
@@ -31,29 +31,12 @@ Widget additinalPicker(context, int index) {
                 'Color',
                 style: Style.h3plus(),
               ),
-              // Obx(() => Icon(
-              //       Icons.panorama_fish_eye,
-              //       color: (index != null)
-              //           ? controller.todos[index].color != null
-              //               ? controller.todos[index].color
-              //               : Colors.white
-              //           : controller.color.value,
-              //     )),
               Obx(() => Icon(
                     Icons.lens,
                     color: index == null
                         ? controller.color.value
-                        : controller.todos[index].color != null
-                            ? controller.todos[index].color
-                            : controller.color.value,
+                        : controller.todos[index].color,
                   )),
-              // ObxValue(
-              //   (index) => Icon(
-              //     Icons.lens,
-              //     color: controller.color.value,
-              //   ),
-              //   false.obs,
-              // ),
             ],
           ),
         ),
@@ -64,11 +47,21 @@ Widget additinalPicker(context, int index) {
               currentTime: DateTime.now(),
               locale: LocaleType.ru,
               onCancel: () => Navigator.of(context).pop(),
-              onConfirm: (time) => controller.changeDateTime(time.toString()),
+              onConfirm: (time) {
+                if (index != null) {
+                  var _editing = controller.todos[index];
+                  _editing.dateTime = time.toString();
+                  controller.todos[index] = _editing;
+                } else {
+                  controller.changeDateTime(time.toString());
+                }
+
+                // controller.changeDateTime(time.toString());
+                print(time);
+              },
               theme: DatePickerTheme(
                 backgroundColor: Colors.white,
               ));
-          print('date');
         },
         child: Container(
           width: MediaQuery.of(context).size.width * 0.4,
@@ -86,10 +79,17 @@ Widget additinalPicker(context, int index) {
               SizedBox(
                 width: 10.0,
               ),
-              Text(
-                formattedDate,
-                style: Style.h3plus(),
-              )
+              Obx(() => Text(
+                    (index == null)
+                        ? (controller.time.value == 'Set data')
+                            ? 'Set data'
+                            : DateFormat('d MMM y')
+                                .format(DateTime.parse(controller.time.value))
+                        : DateFormat('d MMM y').format(
+                            DateTime.parse(controller.todos[index].dateTime)),
+                    //formattedDate,
+                    style: Style.h3plus(),
+                  ))
             ],
           ),
         ),
@@ -98,7 +98,7 @@ Widget additinalPicker(context, int index) {
   );
 }
 
-void showColors(context) {
+void showColors(context, int mainIndex) {
   final TodoController controller = Get.find();
   showCupertinoDialog(
       context: context,
@@ -115,7 +115,14 @@ void showColors(context) {
                     return GestureDetector(
                       onTap: () {
                         print(color.value);
-                        controller.changeColor(color);
+
+                        if (mainIndex == null) {
+                          controller.changeColor(color);
+                        } else {
+                          var editing = controller.todos[mainIndex];
+                          editing.color = color;
+                          controller.todos[mainIndex] = editing;
+                        }
                         Get.back();
                       },
                       child: Icon(

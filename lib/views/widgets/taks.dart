@@ -73,7 +73,7 @@ class Tasks extends StatelessWidget {
                         ),
                       )
                     : null,
-                trailing: (controller.todos[index].dateTime != '')
+                trailing: (controller.todos[index].dateTime != 'Set data')
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
