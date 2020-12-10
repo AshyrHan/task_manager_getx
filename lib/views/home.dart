@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_getx/controllers/todo_controller.dart';
 import 'package:task_manager_getx/style/appColors.dart';
 import 'package:task_manager_getx/style/style.dart';
 import 'package:task_manager_getx/views/drawer.dart';
@@ -10,6 +11,7 @@ import 'package:task_manager_getx/views/widgets/newTask.dart';
 import 'package:task_manager_getx/views/widgets/taks.dart';
 
 class Home extends StatelessWidget {
+  final TodoController controller = Get.put(TodoController());
   final GlobalKey _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {

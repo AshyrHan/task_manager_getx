@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ToDo {
-  String content;
+  String name;
   String descrip;
   bool isDone;
   Color color;
   String category;
-  DateTime dateTime;
+  String dateTime;
   ToDo({
-    this.content,
+    this.name,
     this.descrip,
     this.isDone,
     this.color,

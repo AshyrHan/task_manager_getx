@@ -10,4 +10,15 @@ class AppColors {
   static Color taskColor = HexColor('2D6DDB');
   static Color taskColor2 = HexColor('DF0AF2');
   static Color taskColor3 = HexColor('C70028');
+
+  final List<Color> appColorsList = [
+    Colors.black,
+    Colors.red,
+    Colors.orange,
+    Colors.blue,
+    Colors.purple,
+    Colors.green,
+    Colors.grey,
+    Colors.yellow
+  ];
 }
