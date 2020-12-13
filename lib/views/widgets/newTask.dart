@@ -72,7 +72,10 @@ class CreatTask extends StatelessWidget {
                       'CATEGORIES',
                       style: Style.h3(),
                     ),
-                    catergoriesTegs(),
+                    //catergoriesTegs(),
+                    CategoriesChips(
+                      mainIndex: this.index,
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.10,
                     ),
@@ -94,10 +97,6 @@ class CreatTask extends StatelessWidget {
             } else {
               controller.editTask(
                   taskNameController.text, taskDescripController?.text, index);
-              // controller.todos[index].name = taskNameController.text;
-              // controller.todos[index].descrip = taskDescripController?.text;
-              // controller.todos[index].color = controller.color.value;
-              // controller.todos[index].dateTime = controller.time?.value;
             }
           } else {
             return Get.snackbar(

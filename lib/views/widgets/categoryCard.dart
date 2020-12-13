@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_manager_getx/controllers/todo_controller.dart';
 import 'package:task_manager_getx/style/appColors.dart';
 import 'package:task_manager_getx/style/style.dart';
 
 class CategoryCard extends StatelessWidget {
+  final TodoController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -12,10 +15,12 @@ class CategoryCard extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
-        itemCount: cardList.length,
+
+        itemCount: controller.categories.length,
+        //itemCount: cardList.length,
         itemBuilder: (context, index) {
-          final _complateTask = cardList[index].complateTasts;
-          final _initTask = cardList[index].initTasks;
+          // final _complateTask = cardList[index].complateTasts;
+          // final _initTask = cardList[index].initTasks;
           return Container(
             margin: EdgeInsets.only(right: 10.0),
             width: size.width * 0.5,
@@ -32,19 +37,19 @@ class CategoryCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // Text(
+                    //   '${cardList[index].complateTasts}/${cardList[index].initTasks} Tasks',
+                    //   style: Style.h4(),
+                    // ),
                     Text(
-                      '${cardList[index].complateTasts}/${cardList[index].initTasks} Tasks',
-                      style: Style.h4(),
-                    ),
-                    Text(
-                      cardList[index].cardName,
+                      controller.categories[index].name,
                       style: Style.h2(),
                     ),
                     LinearProgressIndicator(
-                      value: _complateTask / _initTask,
+                      value: 16 / 23,
                       backgroundColor: Colors.black12,
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(cardList[index].color),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                          controller.categories[index].color),
                     ),
                   ],
                 ),

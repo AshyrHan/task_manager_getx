@@ -85,9 +85,10 @@ Widget additinalPicker(context, int index) {
                             ? 'Set data'
                             : DateFormat('d MMM y')
                                 .format(DateTime.parse(controller.time.value))
-                        : DateFormat('d MMM y').format(
-                            DateTime.parse(controller.todos[index].dateTime)),
-                    //formattedDate,
+                        : (controller.todos[index].dateTime == 'Set data')
+                            ? 'Set data'
+                            : DateFormat('d MMM y').format(DateTime.parse(
+                                controller.todos[index].dateTime)),
                     style: Style.h3plus(),
                   ))
             ],
