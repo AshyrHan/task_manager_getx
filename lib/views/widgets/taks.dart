@@ -36,28 +36,35 @@ class Tasks extends StatelessWidget {
               ),
               child: ListTile(
                 onTap: () => Get.to(CreatTask(index: index)),
-                leading: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      child: controller.todos[index].isDone
-                          ? Icon(
-                              Icons.check_circle,
-                              color: Colors.grey[400],
-                              size: 30,
-                            )
-                          : Container(
-                              width: 25,
-                              height: 25,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: controller.todos[index].color,
-                                    width: 2.0),
-                                shape: BoxShape.circle,
+                leading: GestureDetector(
+                  onTap: () {
+                    var changed = controller.todos[index];
+                    changed.isDone = !changed.isDone;
+                    controller.todos[index] = changed;
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        child: controller.todos[index].isDone
+                            ? Icon(
+                                Icons.check_circle,
+                                color: Colors.grey[400],
+                                size: 30,
+                              )
+                            : Container(
+                                width: 25,
+                                height: 25,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: controller.todos[index].color,
+                                      width: 2.0),
+                                  shape: BoxShape.circle,
+                                ),
                               ),
-                            ),
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
                 title: Text(
                   controller.todos[index].name,

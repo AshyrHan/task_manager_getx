@@ -9,54 +9,59 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      margin: EdgeInsets.only(left: 15.0),
-      height: size.height * 0.18,
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-
-        itemCount: controller.categories.length,
-        //itemCount: cardList.length,
-        itemBuilder: (context, index) {
-          // final _complateTask = cardList[index].complateTasts;
-          // final _initTask = cardList[index].initTasks;
-          return Container(
-            margin: EdgeInsets.only(right: 10.0),
-            width: size.width * 0.5,
-            child: Card(
-              elevation: 1.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    // Text(
-                    //   '${cardList[index].complateTasts}/${cardList[index].initTasks} Tasks',
-                    //   style: Style.h4(),
-                    // ),
-                    Text(
-                      controller.categories[index].name,
-                      style: Style.h2(),
-                    ),
-                    LinearProgressIndicator(
-                      value: 16 / 23,
-                      backgroundColor: Colors.black12,
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          controller.categories[index].color),
-                    ),
-                  ],
+    return Obx(
+      () => Container(
+        margin: EdgeInsets.only(left: 15.0),
+        height: size.height * 0.18,
+        child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: controller.categories.length,
+          itemBuilder: (context, index) {
+            final int complate = controller.taskProgress(index).first;
+            final int all = controller.taskProgress(index).last;
+            final progress = complate / all;
+            return Container(
+              margin: EdgeInsets.only(right: 10.0),
+              width: size.width * 0.5,
+              child: Card(
+                elevation: 1.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 5.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      //${complate.toString()}/${all.toString()}
+                      Text(
+                        '${controller.taskDone}/${controller.taskCommon} old ${complate.toString()}/${all.toString()}',
+                        style: Style.h4(),
+                      ),
+                      Text(
+                        controller.categories[index].name,
+                        style: Style.h2(),
+                      ),
+                      LinearProgressIndicator(
+                        value: (progress.isNaN) ? 0.0 : progress,
+                        backgroundColor: Colors.black12,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                            controller.categories[index].color),
+                      ),
+                      IconButton(
+                          icon: Icon(Icons.gesture),
+                          onPressed: () => print(progress.isNaN))
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

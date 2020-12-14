@@ -167,7 +167,14 @@ class _CategoriesChipsState extends State<CategoriesChips> {
                 onSelected: (bool selected) {
                   setState(() {
                     _defaultChoiceIndex = selected ? index : 0;
-                    controller.changeCategory(index);
+                    if (mainIndex != null) {
+                      var changed = controller.todos[mainIndex];
+                      changed.category = index;
+                      controller.todos[mainIndex] = changed;
+                      controller.todos.refresh();
+                    } else {
+                      controller.changeCategory(index);
+                    }
                     print('index: $index');
                   });
                 },

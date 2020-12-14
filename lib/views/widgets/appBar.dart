@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:task_manager_getx/controllers/todo_controller.dart';
 import 'package:task_manager_getx/style/appColors.dart';
 
 AppBar appBar(GlobalKey<ScaffoldState> key) {
+  final TodoController controller = Get.find();
   return AppBar(
     elevation: 0,
     backgroundColor: AppColors.bg,
@@ -28,7 +30,7 @@ AppBar appBar(GlobalKey<ScaffoldState> key) {
             size: 26.0,
           ),
           onTap: () {
-            Get.snackbar('Snackbar', 'Message');
+            controller.taskProgress(0);
           },
         ),
       ),
