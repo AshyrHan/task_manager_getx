@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager_getx/style/appColors.dart';
+import 'package:get/get.dart';
+
+import 'appColors.dart';
 
 class Style {
   static h1() {
@@ -51,9 +53,9 @@ class Style {
     );
   }
 
-  static boxDecoration() {
+  static boxDecoration(context) {
     return BoxDecoration(
-      color: Colors.white,
+      color: Get.isDarkMode ? Theme.of(context).cardColor : Colors.white,
       borderRadius: BorderRadius.circular(14.0),
       boxShadow: [
         BoxShadow(
