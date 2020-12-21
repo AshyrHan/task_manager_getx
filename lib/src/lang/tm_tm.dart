@@ -22,5 +22,11 @@ const Map<String, String> tmTM = {
   'chooseLang': 'Dili saýlaň',
   'close': 'Yza',
   'error': 'Ýalňyşlyk',
-  'notEmpty': 'Işiň ady boş bolmaly däl'
+  'notEmpty': 'Işiň ady boş bolmaly däl',
+  'welcome': 'Hoş Geldiňiz!',
+  'yName': 'Siziň adyňyz',
+  'exName': 'Zelili',
+  'confirm': 'Boldy',
+  'firstTask': 'Birinji iş',
+  'firstDesc': 'Täze iş döret'
 };

@@ -8,6 +8,7 @@ import 'package:task_manager_getx/src/style/themes.dart';
 import '../controller.dart';
 
 Widget menu(BuildContext context) {
+  final TodoController controller = Get.find();
   final size = MediaQuery.of(context).size;
   return Drawer(
     elevation: 5.0,
@@ -35,10 +36,12 @@ Widget menu(BuildContext context) {
             width: size.width,
             height: size.height * 0.15,
             alignment: Alignment.centerLeft,
-            // child: CircleAvatar(
-            //   backgroundImage: AssetImage('assets/avatars/avatar1.png'),
-            //   radius: 50.0,
-            // ),
+            child: CircleAvatar(
+              backgroundImage: AssetImage(
+                controller.avatar.value,
+              ),
+              radius: 50.0,
+            ),
           ),
           SizedBox(
             height: 20.0,
@@ -52,13 +55,13 @@ Widget menu(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Jack',
+                    controller.userName.value,
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   SizedBox(
                     height: 5.0,
                   ),
-                  Text('Mitchel', style: Theme.of(context).textTheme.headline3),
+                  // Text('Mitchel', style: Theme.of(context).textTheme.headline3),
                 ],
               )),
           Container(

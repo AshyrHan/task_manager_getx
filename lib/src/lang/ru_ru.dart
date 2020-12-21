@@ -22,5 +22,11 @@ const Map<String, String> ruRU = {
   'chooseLang': 'Выберите язык',
   'close': 'Закрыть',
   'error': 'Ошибка',
-  'notEmpty': 'Имя не должен быть пустым'
+  'notEmpty': 'Имя не должен быть пустым',
+  'welcome': 'Добро пожаловать!',
+  'yName': 'Ваше имя',
+  'exName': 'Иван',
+  'confirm': 'Потдвердить',
+  'firstTask': 'Первая задача!',
+  'firstDesc': 'Создать задачу'
 };

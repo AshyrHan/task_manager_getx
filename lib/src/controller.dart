@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:task_manager_getx/src/model/model.dart';
+import 'package:task_manager_getx/src/widget/welcomeDialog.dart';
 
 import 'editTask.dart';
 import 'style/appColors.dart';
@@ -148,6 +149,30 @@ class TodoController extends GetxController {
     cat[0].name = 'common'.tr;
     cat[1].name = 'work'.tr;
     cat[2].name = 'personal'.tr;
+    cat[0].todo[0].name = 'firstTask'.tr;
+    cat[0].todo[0].descrip = 'firstDesc'.tr;
+  }
+
+  // Logging
+  var isLogged = false.obs;
+  // profile
+  var userName =
+      GetStorage().hasData('userName') ? GetStorage().read('userName') : ''.obs;
+
+  var avatar = GetStorage().hasData('avatar')
+      ? GetStorage().read('avatar')
+      : 'assets/avatars/avatar1.png'.obs;
+  void saveProfilData(String name) {
+    if (name.length != 0) {
+      userName.value = name;
+
+      GetStorage().write('userName', name);
+      GetStorage().write('avatar', avatar.value);
+
+      Get.back();
+    } else {
+      Get.snackbar('error'.tr, 'notEmpty'.tr);
+    }
   }
 
   @override
@@ -158,6 +183,10 @@ class TodoController extends GetxController {
         name: 'Работа'.tr, color: AppColors.taskColor2, todo: List<Todo>()));
     cat.add(Category(
         name: 'Личный', color: AppColors.taskColor3, todo: List<Todo>()));
+    cat[0].todo.add(Todo(
+          name: 'First Task',
+          descrip: 'Creat your task',
+        ));
 
     List storedTodos = GetStorage().read<List>('todos');
 
@@ -167,7 +196,18 @@ class TodoController extends GetxController {
     ever(cat, (_) {
       GetStorage().write('todos', cat.toJson());
     });
+
+    // isLogged.value = false;
+
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    ever(isLogged, showWelcomeDialog);
+    isLogged.value = GetStorage().hasData('isLogged');
+
+    super.onReady();
   }
 
   void deleteAll() {

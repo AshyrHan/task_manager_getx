@@ -22,5 +22,11 @@ const Map<String, String> enUS = {
   'chooseLang': 'Choose language',
   'close': 'Close',
   'error': 'Error',
-  'notEmpty': 'Task name should be not empty'
+  'notEmpty': 'Task name should be not empty',
+  'welcome': 'Welcome!',
+  'yName': 'Your name',
+  'exName': 'Jack',
+  'confirm': 'Confirm',
+  'firstTask': 'First task',
+  'firstDesc': 'Create your task'
 };
