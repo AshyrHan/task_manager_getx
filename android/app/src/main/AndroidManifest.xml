@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.task_manager_getx">
    <application
-        android:label="task_manager_getx"
+        android:label="Work Manager"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

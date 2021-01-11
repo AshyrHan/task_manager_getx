@@ -156,15 +156,15 @@ class TodoController extends GetxController {
   // Logging
   var isLogged = false.obs;
   // profile
-  var userName =
-      GetStorage().hasData('userName') ? GetStorage().read('userName') : ''.obs;
+  // var userName =
+  //     GetStorage().hasData('userName') ? GetStorage().read('userName') : ''.obs;
 
   var avatar = GetStorage().hasData('avatar')
       ? GetStorage().read('avatar')
       : 'assets/avatars/avatar1.png'.obs;
   void saveProfilData(String name) {
     if (name.length != 0) {
-      userName.value = name;
+      //  userName.value = name;
 
       GetStorage().write('userName', name);
       GetStorage().write('avatar', avatar.value);
@@ -184,8 +184,8 @@ class TodoController extends GetxController {
     cat.add(Category(
         name: 'Личный', color: AppColors.taskColor3, todo: List<Todo>()));
     cat[0].todo.add(Todo(
-          name: 'First Task',
-          descrip: 'Creat your task',
+          name: 'Первая задача!',
+          descrip: 'Создать задачу',
         ));
 
     List storedTodos = GetStorage().read<List>('todos');

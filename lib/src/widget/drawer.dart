@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:task_manager_getx/src/lang/translations.dart';
 import 'package:task_manager_getx/src/style/appColors.dart';
 import 'package:task_manager_getx/src/style/themes.dart';
@@ -8,7 +9,6 @@ import 'package:task_manager_getx/src/style/themes.dart';
 import '../controller.dart';
 
 Widget menu(BuildContext context) {
-  final TodoController controller = Get.find();
   final size = MediaQuery.of(context).size;
   return Drawer(
     elevation: 5.0,
@@ -38,7 +38,9 @@ Widget menu(BuildContext context) {
             alignment: Alignment.centerLeft,
             child: CircleAvatar(
               backgroundImage: AssetImage(
-                controller.avatar.value,
+                GetStorage().hasData('avatar')
+                    ? GetStorage().read('avatar')
+                    : 'assets/avatars/avatar1.png',
               ),
               radius: 50.0,
             ),
@@ -55,7 +57,9 @@ Widget menu(BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    controller.userName.value,
+                    GetStorage().hasData('userName')
+                        ? GetStorage().read('userName')
+                        : '',
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   SizedBox(
